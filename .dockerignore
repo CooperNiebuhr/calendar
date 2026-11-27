@@ -1,0 +1,12 @@
+.git
+.agents
+.aws
+.codex
+.bundle
+.env
+.env.*
+log
+storage
+tmp
+vendor/bundle
+test

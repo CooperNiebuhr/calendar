@@ -1,0 +1,7 @@
+/.bundle/
+/.env
+/.env.*
+/log/
+/storage/*
+/tmp/
+/vendor/bundle/

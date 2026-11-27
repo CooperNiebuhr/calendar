@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20251f">
+  <meta name="description" content="A monthly calendar with a seven-day look ahead.">
+  <title>Calendar</title>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/calendar.js" defer></script>
+</head>
+<body>
+  <main class="workspace" id="calendar">
+    <div class="page-heading">
+      <h1 id="period-title"></h1>
+      <div class="period-controls" role="group" aria-label="Calendar navigation">
+        <button class="button" type="button" data-action="today">Today</button>
+        <div class="arrow-group">
+          <button class="icon-button" type="button" data-action="previous" aria-label="Previous month"><span data-icon="left"></span></button>
+          <button class="icon-button" type="button" data-action="next" aria-label="Next month"><span data-icon="right"></span></button>
+        </div>
+      </div>
+    </div>
+    <div id="load-error" class="load-error" hidden>
+      <p role="alert">Calendar entries couldn’t be loaded.</p>
+      <button class="button" type="button" data-action="retry">Retry</button>
+    </div>
+    <div id="layout" class="split-layout"></div>
+    <p class="sr-only" id="announcement" role="status"></p>
+  </main>
+
+  <dialog id="item-dialog" aria-labelledby="dialog-title">
+    <form id="item-form">
+      <div class="dialog-heading">
+        <h2 id="dialog-title">New item</h2>
+        <button class="icon-button" type="button" data-action="close" aria-label="Close dialog"><span data-icon="close"></span></button>
+      </div>
+      <label>Title<input name="title" required maxlength="80" autofocus></label>
+      <div class="form-row">
+        <label>Date<input name="date" type="date" required></label>
+        <label>Time <span class="optional">(optional)</span><input name="time" type="time"></label>
+      </div>
+      <label>Notes <span class="optional">(optional)</span><textarea name="notes" rows="2" maxlength="240"></textarea></label>
+      <p id="item-error" class="item-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="button remove" type="button" data-action="remove" hidden>Remove</button>
+        <button class="button" type="button" data-action="close">Cancel</button>
+        <button class="button primary" type="submit">Save item</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
